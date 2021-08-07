@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>DBeats</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+    <script
+      src="https://code.jquery.com/jquery-3.6.0.min.js"
+      integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>
+    <script
+      src="https://code.jquery.com/jquery-3.6.0.min.js"
+      integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://unpkg.com/moralis/dist/moralis.js"></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+      integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+      crossorigin="anonymous"
+    ></script>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="../assets/styles/style.css" />
+  </head>
+  <body>
+    <div class="jumbotron jumbotron-fluid">
+      <div class="container">
+        <h1 class="display-4">Welcome</h1>
+      </div>
+    </div>
+    <div class="container">
+      <button id="connect">Sign in with MetaMask</button>
+    </div>
+     <div class="container" id="feed-section">
+         <div class="row">
+
+
+           
+            <!-- result is an array with all registered Users -->
+            <% if(result!=null&&result.length>0){ %><!--  if array with result exists -->
+              
+                 <% for(var i=0;i<result.length;i++){%>
+                  <% if(result[i].tracks!=null&&result[i].tracks.length>0){ %><!--  if array with result exists -->
+                    <% for(var j=0;j<result[i].tracks.length;j++){%>
+                    
+                    <div class="col-md-4">
+                        <div class="card">
+                            <div class="card-header">
+                              Featured
+                            </div>
+                            <div class="card-body">
+                              <h5 class="card-title"><%= result[i].tracks[j].trackName; %></h5>
+                              <p class="card-text"><%= result[i].tracks[j].genre; %></p>
+                              <a href="#" class="btn btn-primary">Play
+                                <audio controls> 
+                                    <source src=" <%= result[i].tracks[j].link; %>" type="audio/mpeg">
+                                  Your browser does not support the audio element.
+                                  </audio>
+                              </a>
+                            </div>
+                          </div>
+                    </div>
+                
+                      
+                    <% } %>
+                <% } %>
+            <%}
+                     } %>   
+                    </div>
+            
+    </div>
+
+    <script type="text/javascript">
+      Moralis.initialize("RrKpMiHThO0v1tXiKcxJuBacU35i7UidwNwQq0as"); // Application id from moralis.io
+      Moralis.serverURL = "https://58zywcsvxppw.usemoralis.com:2053/server"; //Server url from moralis.io
+      const user = Moralis.User.current();
+
+      $(document).ready(function () {
+        console.log("ready!");
+        
+        if(user==null){
+            $("#feed-section").hide();
+            $("#connect").show();
+        }
+        else{
+            console.log("Authenticated User:"+user.get("ethAddress"));
+            $("#userId").val(user.get("ethAddress"));
+            $("#connect").hide();
+            $("#upload-section").show(100);
+        }
+      });
+
+      async function login() {
+        try {
+          // user = await Moralis.Web3.authenticate();
+          // console.log(user);
+          Moralis.Web3.authenticate().then(function (user) {
+            alert(user.get("ethAddress"));
+            $("#connect").hide();
+            $("#upload-section").show(100);
+          });
+        } catch (error) {
+          console.log(error);
+          alert(error);
+        }
+      }
+
+      document.getElementById("connect").onclick = login;
+    </script>
+  </body>
+</html>

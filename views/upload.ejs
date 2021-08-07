@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>DBeats </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="stylesheet"
+      href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+      integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://code.jquery.com/jquery-3.6.0.min.js"
+      integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>
+
+    <script src="https://unpkg.com/moralis/dist/moralis.js"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+      crossorigin="anonymous"
+    ></script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+    <script src="https://unpkg.com/@popperjs/core@2/dist/umd/popper.min.js"></script>
+    <script src="https://unpkg.com/tippy.js@6/dist/tippy-bundle.umd.js"></script>
+    
+    <link rel="stylesheet" href="../assets/styles/style.css" />
+    <script src="https://global.transak.com/sdk/v1.1/widget.js" async></script>
+
+    <script src="../assets/scripts/main.js"></script>
+
+    <style>
+       
+    </style>
+  </head>
+  <body style="background-color: #f3f0f7">
+    <div class="container">
+      <a href="/feed">Home</a>
+      <div class="card rounded-10 flat mt-5">
+        <div class="row m-3">
+          <div class="col-md-3">
+            <div
+              class="rounded-10 flat"
+              id="albumArtBackground"
+              style="
+                background: url('<%= trckName.trackImage %>');
+                width: 290px;
+                height: 290px;
+                background-position: center;
+                background-size: cover;
+                background-repeat: no-repeat;
+              "
+            ></div>
+          </div>
+          <div class="col-md-9">
+            <div class="info-section" style="">
+              <h2><%= trckName.trackName %></h2>
+
+              <a class="btn btn-primary p-3 my-2 px-4" href="<%= trckName.link %>"
+                ><i class="fas fa-play text-light"></i>&nbsp;&nbsp;PLAY</a
+              >
+              <br />
+              <a class="btn btn-default my-3 p-2 px-3 " href="<%= trckName.link %>">
+                <i class="fas fa-share"></i> SHARE
+              </a>
+              <div class="btn btn-default my-3  p-2 px-3 mx-3" id="donate">
+                <i class="fas fa-donate"></i> DONATE
+              </div>
+
+              <div class="btn btn-default my-3  p-2 px-3  ">
+                <i class="fas fa-ellipsis-v"></i>
+              </div>
+            </div>
+          </div>
+          
+        </div>
+        <hr style="height:1.5px;border-width:0;background-color:rgb(216, 216, 216); ">
+        <div class="row m-3">
+
+          <div class="col-md-2"   >
+            <p class="info-heads">DURATION<span class="duration" ></span> </p>
+
+          </div>
+
+          <div class="col-md-2">
+            <p class="info-heads">GENRE<span  >00:00</span> </p>
+
+          </div>
+
+          <div class="col-md-2">
+            <p class="info-heads">MOOD<span  >00:00</span> </p>
+
+          </div>
+
+
+
+
+ 
+        </div>
+      </div>
+    </div>
+
+    <video
+      height="300px"
+      width="300px"
+      src="http://localhost:8080/ipfs/QmSiJrfDXWoPbpytuaqu4UihbHbqAkcga6dkHGLMPTrJ53"
+      autoplay
+    ></video>
+  </body>
+  <script>
+ 
+
+ tippy('#donate', {
+        content: 'My tooltip!',
+         
+      });
+
+
+      function donateTransak(){  
+      let transak = new TransakSDK.default({
+        apiKey: 'a0aac8e7-6e2c-43b4-9434-394165e36bd5', // Your API Key
+        environment: 'STAGING', // STAGING/PRODUCTION
+        defaultCryptoCurrency: 'MATIC',
+        walletAddress: '', // Your customer wallet address
+        themeColor: '#00D3FF', // App theme color in hex
+        fiatCurrency: 'INR', // INR/GBP
+        email: '', // Your customer email address
+        redirectURL: '',
+        hostURL: window.location.origin,
+        widgetHeight: '550px',
+        widgetWidth: '100%'
+      });
+      transak.init();
+      // To get all the events
+      transak
+        .on(transak.ALL_EVENTS, (data) => {
+          console.log(data)
+        });
+      // This will trigger when the user marks payment is made.
+      transak.on(transak.EVENTS.TRANSAK_ORDER_SUCCESSFUL, (orderData) => {
+        console.log(orderData);
+        //transak.close();
+      });
+    }
+    window.onload = function() {
+      launchTransak()
+    }  
+
+
+    document.getElementById("donate").onclick = donateTransak;
+
+//Get Duration Of Track
+    function getDuration(src, cb) {
+    var audio = new Audio();
+    $(audio).on("loadedmetadata", function(){
+        cb(audio.duration);
+    });
+    audio.src = src;
+}
+getDuration("<%= trckName.link %>", function(length) {
+  var duration = myTime(Math.floor(length));
+    console.log('I got length ' + duration);
+    $(".duration").text(duration);
+});
+
+function myTime(time) {
+            var hr = ~~(time / 3600);
+            var min = ~~((time % 3600) / 60);
+            var sec = time % 60;
+            var sec_min = "";
+            if (hr > 0) {
+               sec_min += "" + hrs + ":" + (min < 10 ? "0" : "");
+            }
+            sec_min += "" + min + ":" + (sec < 10 ? "0" : "");
+            sec_min += "" + sec;
+            return sec_min+ "";
+         }
+
+  </script>
+</html>

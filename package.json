@@ -1,0 +1,40 @@
+{
+  "name": "ipfs-file-storage",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "or1on",
+  "license": "ISC",
+  "dependencies": {
+    "@barba/core": "^2.9.7",
+    "@craco/craco": "^6.2.0",
+    "@supercharge/strings": "^1.19.0",
+    "body-parser": "^1.19.0",
+    "cids": "^1.1.7",
+    "cors": "^2.8.5",
+    "crypto-random-string": "^4.0.0",
+    "dotenv": "^10.0.0",
+    "ejs": "^3.1.6",
+    "express": "^4.17.1",
+    "express-fileupload": "^1.2.1",
+    "ipfs": "^0.55.4",
+    "ipfs-http-client": "^50.1.2",
+    "js-ipfs": "0.0.301",
+    "mongodb": "^4.0.1",
+    "mongoose": "^5.13.5",
+    "moralis": "0.0.30",
+    "noty": "^3.2.0-beta-deprecated",
+    "orbit-db": "^0.26.1",
+    "parse": "^3.3.0",
+    "path": "^0.12.7",
+    "tippy.js": "^6.3.1"
+  },
+  "devDependencies": {
+    "autoprefixer": "^9.8.6",
+    "postcss": "^7.0.36",
+    "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.2.7"
+  }
+}

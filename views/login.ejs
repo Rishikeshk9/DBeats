@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+
+    <title>Title</title>
+    <link
+      rel="stylesheet"
+      href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+      integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p"
+      crossorigin="anonymous"
+    />
+
+    <script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>
+    <script
+      src="https://code.jquery.com/jquery-3.6.0.min.js"
+      integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://unpkg.com/moralis/dist/moralis.js"></script>
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+      crossorigin="anonymous"
+    ></script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+    <script src="../assets/noty/noty.js"></script>
+
+    <link rel="stylesheet" href="../assets/styles/style.css" />
+
+    <link rel="stylesheet" href="../assets/noty/noty.css" />
+ 
+  </head>
+  <body>
+    <div class="jumbotron jumbotron-fluid">
+      <div class="container">
+        <h1 class="display-4">Welcome</h1>
+      </div>
+    </div>
+
+    <!-- Button trigger modal -->
+    <button
+      type="button"
+      class="btn btn-primary"
+      data-bs-toggle="modal"
+      data-bs-target="#exampleModal"
+      id="toggle-signup"
+    >
+      Sign Up
+    </button>
+
+    <!-- Modal -->
+    <div
+      class="modal fade"
+      id="exampleModal"
+      tabindex="-1"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered modal-md">
+        <div class="modal-content ">
+          <!-- <div class="modal-header">
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div> -->
+          <div class="modal-body">
+            <div class="container-fluid">
+              <div class="row">
+                <div class="col-md-12 text-center">
+                  <img
+                    src="../assets/images/DBeatsVert.png"
+                    class="m-3"
+                    width="175px"
+                    height="175px"
+                    alt=""
+                  />
+                  <h3>Sign Up For DBeats</h3>
+                  <p>Stream the music you Love.</p>
+                  <p>Support the artists you care about.</p>
+
+                  <form action="/user/add" enctype="multipart/form-data" method="POST">
+                    <div class="form-floating my-2  ">
+                  
+                      <input autocomplete="off" type="text" required  class="form-control"  id="fullName"  name="name" placeholder="Your Name" />
+                      <label for="fullName">Your Name</label>
+                    </div>
+                    <br>
+                  <div class="form-floating my-2  ">
+                     
+                    <input autocomplete="off" type="text" required  class="form-control" onkeyup="validate()"  id="userName"  name="userName" placeholder="User Name" />
+                    <label for="userName">User Name</label>
+                  </div>
+                  <br>
+                 <div class="d-grid gap-2 col-12 mx-auto">
+                    <button id="connect" class=" btn-primary   btn" type="button">
+                      Connect Wallet 
+                    </button> 
+                  </div>
+                  <br /> 
+                  <input type="hidden" readonly value="" name="walletId" id="walletId">
+                  <div class="d-grid gap-2 col-12 mx-auto">
+                     <button class=" btn-primary-outline btn " id="continue" type="submit">
+                      Continue&nbsp;&nbsp;&nbsp;&nbsp;<i
+                        class="fas fa-arrow-right"
+                      ></i>
+                    </button> 
+                  </div>
+                  <br /> 
+                  <p class="text-dark">Already have a DBeats Account? &nbsp;<a href="">Sign In</a></p>
+                </form>
+                </div>
+               
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer d-none">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Close
+            </button>
+            <button type="button" class="btn btn-primary">Save changes</button>
+          </div>
+        </div>
+      </div>
+    </div>
+     
+    <script type="text/javascript" src="../assets/scripts/main.js"></script>
+    <script type="text/javascript">
+    
+function validate() {
+    var re = /^[a-z]+$/;
+  // Check input
+  if(re.test(document.getElementById('userName').value)){
+    // Style green
+    console.log("GREEN")
+    new Noty({ text: 'NOTY - a dependency-free notification library!',
+    animation: {
+        open: 'animated bounceInRight', // Animate.css class names
+        close: 'animated bounceOutRight' // Animate.css class names
+    }
+}).show();
+    document.getElementById('userName').style.border ='2px solid #00d3ff';
+    // Hide error prompt
+   // document.getElementById('userNameError').style.display = "none";
+   // document.getElementById('userNameEmptyError').style.display = "none";
+    
+  }else if(!re.test(document.getElementById('userName').value)) {
+   //  document.getElementById('userNameError').style.display = "none";
+    // document.getElementById('userNameEmptyError').style.display = "block";
+    console.log("RED")
+    document.getElementById('userName').style.border ='2px solid  #FF0000';
+    document.getElementById('userName').style.color ='#FF0000';
+
+  } 
+}</script>
+  </body>
+</html>

@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>DBeats</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+    rel="stylesheet"
+    href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+    integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p"
+    crossorigin="anonymous"
+  />
+
+    <script
+      src="https://code.jquery.com/jquery-3.6.0.min.js"
+      integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>
+     
+    <script src="https://unpkg.com/moralis/dist/moralis.js"></script>
+    <script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+    crossorigin="anonymous"
+  ></script>
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+    crossorigin="anonymous"
+  />
+    <link rel="stylesheet" href="../assets/styles/style.css" />
+  </head>
+  <body>
+    <div class="jumbotron jumbotron-fluid">
+      <div class="container text-center">
+        <h1 class="display-4">Welcome</h1>
+      </div>
+    </div>
+    <div class="container">
+      <button id="connect">Sign in with MetaMask</button>
+    </div>
+    <h1 class="text-center gradient-header shadow-shim">Upload Music to DBeats</h1>
+     <div class="container px-4 py-1 card flat rounded-10"   id="upload-section">
+       
+    
+      <form class="form-floating my-2"  action="/upload" method="POST" enctype="multipart/form-data">
+      <div class="row">
+        
+        <div class="col-md-3 ">
+           <div class=" my-2  ">
+            
+            <div class="rounded-10 concave" id="albumArtBackground"  style=" background: #dad9e0;  width: 290px;height: 290px;background-position: center;background-size: cover;background-repeat: no-repeat;" >
+              <div class="btn-chip-file"  style=" cursor:pointer;"  >
+                <i  class="fas fa-camera   " style=" cursor:pointer;"></i>&nbsp;&nbsp;  Add Artwork
+                <input id="albumfile" required  autocomplete="off"  class="form-control hide_file flat" type="file" name="albumfile" placeholder="Choose Album Art"/> 
+
+              </div>
+                </div>
+          
+         </div>
+        <div class=" my-2  ">
+          <label for="">Upload File</label>
+          <input autocomplete="off" id="trackFile" required class="form-control" type="file" name="file" /> 
+        </div>
+      
+      </div>
+        
+        
+        <div class="col-md-9">
+          <div class="form-floating my-2" >
+            <input autocomplete="off" class="form-control" id="userId" readonly name="userId" ></input>  
+            <label for="userId">Connected Wallet</label>
+          </div>
+             
+             
+            <div class="row"> 
+              <div class="col-md-6  ">
+                <div class="form-floating my-2  ">
+                  
+                <input autocomplete="off" type="text" required  class="form-control"  id="trackName"  name="fileName" placeholder="Track Name" />
+                <label for="trackName">Track Name</label>
+              </div>
+              </div>
+              <div class="col-md-3   ">
+            
+                <div class="form-floating my-2  ">
+                  
+            <select class="form-control form-select" id="genre" required  name="genre"    placeholder="Genre"  >
+                <option class="form-control" disabled selected >Pick a Genre</option>
+                <option class="form-control" value="Rock">Rock</option>
+                <option class="form-control" value="Metal">Metal</option>
+                <option class="form-control" value="Pop">Pop</option>
+              </select>
+              <label for="genre">Genre</label>
+
+            </div>
+              </div>
+              <div class="col-md-3  ">
+                <div class="form-floating my-2 ">
+
+                <select class="form-control form-select" id="mood"  name="mood" placeholder="mood"  >
+                   <option class="form-control" value="Rock">Rock</option>
+                  <option class="form-control" value="Metal">Metal</option>
+                  <option class="form-control" value="Pop">Pop</option>
+                </select>
+                <label for="mood">Mood</label>
+            </div>
+              </div>
+            </div>
+             
+            <div class="row">
+              <div class="col-md-12   ">
+
+                <div class="form-floating my-2  ">
+                  
+                <input autocomplete="off" id="tags" class="form-control" type="text" name="tags"  placeholder="Tags"/> 
+
+                  <label for="tags">Tags</label>
+                
+                </div>
+              </div>
+            </div>
+            
+            <div class="row">
+              <div class="col-md-12  ">
+                <div class="form-floating my-2" >
+                  <textarea id="description" class="form-control" type="text" name="description" style="height: 100px" placeholder="Description" ></textarea>
+                  <label for="description">Description</label>
+                  
+                </div>
+               
+              </div>
+              
+            </div>
+                
+            <div class="d-grid gap-2 col-12 mx-auto my-2">
+              <button class=" btn-primary  btn form-control" value="Submit" id="continue" type="submit">
+               Upload&nbsp;&nbsp;&nbsp;&nbsp;<i class="fas fa-upload text-light"></i>
+             </button>  
+            </div>
+         
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-floating my-2  ">
+                  
+            <input autocomplete="off" type="text" required  class="form-control"  id="trackName"  name="fileName" placeholder="Track Name" />
+            <label for="trackName">Track ISRC</label>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-floating my-2  ">
+                  
+            <input autocomplete="off" type="text" required  class="form-control"  id="trackName"  name="fileName" placeholder="Track Name" />
+            <label for="trackName">Track ISWC</label>
+          </div>
+        </div>
+      </div>
+      <p>License Type</p><hr>
+
+      <div class="row">
+        <div class="col-md-4">
+          <div class="form-floating my-2  ">
+                  
+            <select class="form-control form-select" id="genre" required  name="genre"    placeholder="Genre"  >
+                <option class="form-control" disabled selected >Allow Attribution?</option>
+                <option class="form-control" value="Rock">Allow Attribution</option>
+                <option class="form-control" value="Metal">No Attribution</option>
+               </select>
+              <label for="genre">Allow Attribution?</label>
+    
+            </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="form-floating my-2  ">
+                  
+            <select class="form-control form-select" id="genre" required  name="genre"    placeholder="Genre"  >
+                <option class="form-control" disabled selected >Commercial Use?</option>
+                <option class="form-control" value="Rock">Commercial Use</option>
+                <option class="form-control" value="Metal">Non Commercial</option>
+               </select>
+              <label for="genre">Commercial Use?</label>
+    
+            </div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-floating my-2  ">
+                  
+            <select class="form-control form-select" id="genre" required  name="genre"    placeholder="Genre"  >
+                <option class="form-control" disabled selected >Derivative Works?</option>
+                <option class="form-control" value="Rock">No Selection</option>
+                <option class="form-control" value="Metal">Share Alike</option>
+                <option class="form-control" value="Metal">No Derivative Works</option>
+               </select>
+              <label for="genre">Derivative Works?</label>
+    
+            </div>
+        </div>
+      </div>
+      
+    </form>
+        
+      </div>
+     
+    
+    </div>
+
+    <script type="text/javascript">
+      Moralis.initialize("RrKpMiHThO0v1tXiKcxJuBacU35i7UidwNwQq0as"); // Application id from moralis.io
+      Moralis.serverURL = "https://58zywcsvxppw.usemoralis.com:2053/server"; //Server url from moralis.io
+      const user = Moralis.User.current();
+
+      $(document).ready(function () {
+        console.log("ready!");
+        
+        if(user==null){
+            $("#upload-section").hide();
+            $("#connect").show();
+        }
+        else{
+            console.log("Authenticated User:"+user.get("ethAddress"));
+            $("#userId").val(user.get("ethAddress"));
+            $("#connect").hide();
+            $("#upload-section").show(100);
+        }
+      });
+
+      async function login() {
+        try {
+          // user = await Moralis.Web3.authenticate();
+          // console.log(user);
+          Moralis.Web3.authenticate().then(function (user) {
+            alert(user.get("ethAddress"));
+            $("#connect").hide();
+            $("#upload-section").show(100);
+          });
+        } catch (error) {
+          console.log(error);
+          alert(error);
+        }
+      }
+
+      document.getElementById("connect").onclick = login;
+
+
+
+
+
+
+
+
+
+      $("#albumfile").change(function () {
+        console.log("Image Chosed")
+        if (this.files && this.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+              $('#albumArtBackground').css('background-image', 'url("' + e.target.result + '")');  
+            }
+            reader.readAsDataURL(this.files[0]);
+        }
+    });
+
+
+    $("#trackFile").change(function () {
+        console.log("Track Chosed")
+        if (this.files && this.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+              $('#trackName').val( ($("#trackFile")[0].files[0].name).replace(/\.[^/.]+$/, ""));  
+            }
+            reader.readAsDataURL(this.files[0]);
+        }
+    });
+    </script>
+  </body>
+</html>
