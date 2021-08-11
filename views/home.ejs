@@ -85,9 +85,7 @@
               </div>
               </div>
               <div class="col-md-3   ">
-            
                 <div class="form-floating my-2  ">
-                  
             <select class="form-control form-select" id="genre" required  name="genre"    placeholder="Genre"  >
                 <option class="form-control" disabled selected >Pick a Genre</option>
                 <option class="form-control" value="Rock">Rock</option>
@@ -149,15 +147,15 @@
         <div class="col-md-6">
           <div class="form-floating my-2  ">
                   
-            <input autocomplete="off" type="text" required  class="form-control"  id="trackName"  name="fileName" placeholder="Track Name" />
-            <label for="trackName">Track ISRC</label>
+            <input autocomplete="off" type="text"  class="form-control"  id="trackISRC"  name="trackISRC" placeholder="Track ISRC" />
+            <label for="trackISRC">Track ISRC</label>
           </div>
         </div>
         <div class="col-md-6">
           <div class="form-floating my-2  ">
                   
-            <input autocomplete="off" type="text" required  class="form-control"  id="trackName"  name="fileName" placeholder="Track Name" />
-            <label for="trackName">Track ISWC</label>
+            <input autocomplete="off" type="text"   class="form-control"  id="trackISWC"  name="trackISWC" placeholder="Track ISRC" />
+            <label for="trackISWC">Track ISWC</label>
           </div>
         </div>
       </div>
@@ -167,12 +165,12 @@
         <div class="col-md-4">
           <div class="form-floating my-2  ">
                   
-            <select class="form-control form-select" id="genre" required  name="genre"    placeholder="Genre"  >
+            <select class="form-control form-select" id="allowAttribution"    name="allowAttribution"    >
                 <option class="form-control" disabled selected >Allow Attribution?</option>
-                <option class="form-control" value="Rock">Allow Attribution</option>
-                <option class="form-control" value="Metal">No Attribution</option>
+                <option class="form-control" value="Allow Attribution">Allow Attribution</option>
+                <option class="form-control" value="No Attribution">No Attribution</option>
                </select>
-              <label for="genre">Allow Attribution?</label>
+              <label for="allowAttribution">Allow Attribution?</label>
     
             </div>
         </div>
@@ -180,25 +178,25 @@
         <div class="col-md-4">
           <div class="form-floating my-2  ">
                   
-            <select class="form-control form-select" id="genre" required  name="genre"    placeholder="Genre"  >
-                <option class="form-control" disabled selected >Commercial Use?</option>
-                <option class="form-control" value="Rock">Commercial Use</option>
-                <option class="form-control" value="Metal">Non Commercial</option>
+            <select class="form-control form-select" id="commercialUse"    name="commercialUse"       >
+                <option class="form-control" disabled selected  >Commercial Use?</option>
+                <option class="form-control" value="Commercial Use">Commercial Use</option>
+                <option class="form-control" value="Non Commercial">Non Commercial</option>
                </select>
-              <label for="genre">Commercial Use?</label>
+              <label for="commercialUse">Commercial Use?</label>
     
             </div>
         </div>
         <div class="col-md-4">
           <div class="form-floating my-2  ">
                   
-            <select class="form-control form-select" id="genre" required  name="genre"    placeholder="Genre"  >
+            <select class="form-control form-select" id="derivativeWorks"    name="derivativeWorks"    >
                 <option class="form-control" disabled selected >Derivative Works?</option>
-                <option class="form-control" value="Rock">No Selection</option>
-                <option class="form-control" value="Metal">Share Alike</option>
-                <option class="form-control" value="Metal">No Derivative Works</option>
+                <option class="form-control" value="No Selection">No Selection</option>
+                <option class="form-control" value="Share Alike">Share Alike</option>
+                <option class="form-control" value="No Derivative Works">No Derivative Works</option>
                </select>
-              <label for="genre">Derivative Works?</label>
+              <label for="derivativeWorks">Derivative Works?</label>
     
             </div>
         </div>
