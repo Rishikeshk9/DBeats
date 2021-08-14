@@ -34,87 +34,87 @@
     <link rel="stylesheet" href="../assets/styles/style.css" />
   </head>
   <body>
-    <div class="jumbotron jumbotron-fluid">
-      <div class="container text-center">
-        <h1 class="display-4">Welcome</h1>
+    <div className="jumbotron jumbotron-fluid">
+      <div className="container text-center">
+        <h1 className="display-4">Welcome</h1>
       </div>
     </div>
-    <div class="container">
+    <div className="container">
       <button id="connect">Sign in with MetaMask</button>
     </div>
-    <h1 class="text-center gradient-header shadow-shim">Upload Music to DBeats</h1>
-     <div class="container px-4 py-1 card flat rounded-10"   id="upload-section">
+    <h1 className="text-center gradient-header shadow-shim">Upload Music to DBeats</h1>
+     <div className="container px-4 py-1 card flat rounded-10"   id="upload-section">
        
     
-      <form class="form-floating my-2"  action="/upload" method="POST" enctype="multipart/form-data">
-      <div class="row">
+      <form className="form-floating my-2"  action="/upload" method="POST" enctype="multipart/form-data">
+      <div className="row">
         
-        <div class="col-md-3 ">
-           <div class=" my-2  ">
+        <div className="col-md-3 ">
+           <div className=" my-2  ">
             
-            <div class="rounded-10 concave" id="albumArtBackground"  style=" background: #dad9e0;  width: 290px;height: 290px;background-position: center;background-size: cover;background-repeat: no-repeat;" >
-              <div class="btn-chip-file"  style=" cursor:pointer;"  >
-                <i  class="fas fa-camera   " style=" cursor:pointer;"></i>&nbsp;&nbsp;  Add Artwork
-                <input id="albumfile" required  autocomplete="off"  class="form-control hide_file flat" type="file" name="albumfile" placeholder="Choose Album Art"/> 
+            <div className="rounded-10 concave" id="albumArtBackground"  style=" background: #dad9e0;  width: 290px;height: 290px;background-position: center;background-size: cover;background-repeat: no-repeat;" >
+              <div className="btn-chip-file"  style=" cursor:pointer;"  >
+                <i  className="fas fa-camera   " style=" cursor:pointer;"></i>&nbsp;&nbsp;  Add Artwork
+                <input id="albumfile" required  autocomplete="off"  className="form-control hide_file flat" type="file" name="albumfile" placeholder="Choose Album Art"/> 
 
               </div>
                 </div>
           
          </div>
-        <div class=" my-2  ">
+        <div className=" my-2  ">
           <label for="">Upload File</label>
-          <input autocomplete="off" id="trackFile" required class="form-control" type="file" name="file" /> 
+          <input autocomplete="off" id="trackFile" required className="form-control" type="file" name="file" /> 
         </div>
       
       </div>
         
         
-        <div class="col-md-9">
-          <div class="form-floating my-2" >
-            <input autocomplete="off" class="form-control" id="userId" readonly name="userId" ></input>  
+        <div className="col-md-9">
+          <div className="form-floating my-2" >
+            <input autocomplete="off" className="form-control" id="userId" readonly name="userId" ></input>  
             <label for="userId">Connected Wallet</label>
           </div>
              
              
-            <div class="row"> 
-              <div class="col-md-6  ">
-                <div class="form-floating my-2  ">
+            <div className="row"> 
+              <div className="col-md-6  ">
+                <div className="form-floating my-2  ">
                   
-                <input autocomplete="off" type="text" required  class="form-control"  id="trackName"  name="fileName" placeholder="Track Name" />
+                <input autocomplete="off" type="text" required  className="form-control"  id="trackName"  name="fileName" placeholder="Track Name" />
                 <label for="trackName">Track Name</label>
               </div>
               </div>
-              <div class="col-md-3   ">
-                <div class="form-floating my-2  ">
-            <select class="form-control form-select" id="genre" required  name="genre"    placeholder="Genre"  >
-                <option class="form-control" disabled selected >Pick a Genre</option>
-                <option class="form-control" value="Rock">Rock</option>
-                <option class="form-control" value="Metal">Metal</option>
-                <option class="form-control" value="Pop">Pop</option>
+              <div className="col-md-3   ">
+                <div className="form-floating my-2  ">
+            <select className="form-control form-select" id="genre" required  name="genre"    placeholder="Genre"  >
+                <option className="form-control" disabled selected >Pick a Genre</option>
+                <option className="form-control" value="Rock">Rock</option>
+                <option className="form-control" value="Metal">Metal</option>
+                <option className="form-control" value="Pop">Pop</option>
               </select>
               <label for="genre">Genre</label>
 
             </div>
               </div>
-              <div class="col-md-3  ">
-                <div class="form-floating my-2 ">
+              <div className="col-md-3  ">
+                <div className="form-floating my-2 ">
 
-                <select class="form-control form-select" id="mood"  name="mood" placeholder="mood"  >
-                   <option class="form-control" value="Rock">Rock</option>
-                  <option class="form-control" value="Metal">Metal</option>
-                  <option class="form-control" value="Pop">Pop</option>
+                <select className="form-control form-select" id="mood"  name="mood" placeholder="mood"  >
+                   <option className="form-control" value="Rock">Rock</option>
+                  <option className="form-control" value="Metal">Metal</option>
+                  <option className="form-control" value="Pop">Pop</option>
                 </select>
                 <label for="mood">Mood</label>
             </div>
               </div>
             </div>
              
-            <div class="row">
-              <div class="col-md-12   ">
+            <div className="row">
+              <div className="col-md-12   ">
 
-                <div class="form-floating my-2  ">
+                <div className="form-floating my-2  ">
                   
-                <input autocomplete="off" id="tags" class="form-control" type="text" name="tags"  placeholder="Tags"/> 
+                <input autocomplete="off" id="tags" className="form-control" type="text" name="tags"  placeholder="Tags"/> 
 
                   <label for="tags">Tags</label>
                 
@@ -122,10 +122,10 @@
               </div>
             </div>
             
-            <div class="row">
-              <div class="col-md-12  ">
-                <div class="form-floating my-2" >
-                  <textarea id="description" class="form-control" type="text" name="description" style="height: 100px" placeholder="Description" ></textarea>
+            <div className="row">
+              <div className="col-md-12  ">
+                <div className="form-floating my-2" >
+                  <textarea id="description" className="form-control" type="text" name="description" style="height: 100px" placeholder="Description" ></textarea>
                   <label for="description">Description</label>
                   
                 </div>
@@ -134,67 +134,67 @@
               
             </div>
                 
-            <div class="d-grid gap-2 col-12 mx-auto my-2">
-              <button class=" btn-primary  btn form-control" value="Submit" id="continue" type="submit">
-               Upload&nbsp;&nbsp;&nbsp;&nbsp;<i class="fas fa-upload text-light"></i>
+            <div className="d-grid gap-2 col-12 mx-auto my-2">
+              <button className=" btn-primary  btn form-control" value="Submit" id="continue" type="submit">
+               Upload&nbsp;&nbsp;&nbsp;&nbsp;<i className="fas fa-upload text-light"></i>
              </button>  
             </div>
          
         </div>
       </div>
 
-      <div class="row">
-        <div class="col-md-6">
-          <div class="form-floating my-2  ">
+      <div className="row">
+        <div className="col-md-6">
+          <div className="form-floating my-2  ">
                   
-            <input autocomplete="off" type="text"  class="form-control"  id="trackISRC"  name="trackISRC" placeholder="Track ISRC" />
+            <input autocomplete="off" type="text"  className="form-control"  id="trackISRC"  name="trackISRC" placeholder="Track ISRC" />
             <label for="trackISRC">Track ISRC</label>
           </div>
         </div>
-        <div class="col-md-6">
-          <div class="form-floating my-2  ">
+        <div className="col-md-6">
+          <div className="form-floating my-2  ">
                   
-            <input autocomplete="off" type="text"   class="form-control"  id="trackISWC"  name="trackISWC" placeholder="Track ISRC" />
+            <input autocomplete="off" type="text"   className="form-control"  id="trackISWC"  name="trackISWC" placeholder="Track ISRC" />
             <label for="trackISWC">Track ISWC</label>
           </div>
         </div>
       </div>
       <p>License Type</p><hr>
 
-      <div class="row">
-        <div class="col-md-4">
-          <div class="form-floating my-2  ">
+      <div className="row">
+        <div className="col-md-4">
+          <div className="form-floating my-2  ">
                   
-            <select class="form-control form-select" id="allowAttribution"    name="allowAttribution"    >
-                <option class="form-control" disabled selected >Allow Attribution?</option>
-                <option class="form-control" value="Allow Attribution">Allow Attribution</option>
-                <option class="form-control" value="No Attribution">No Attribution</option>
+            <select className="form-control form-select" id="allowAttribution"    name="allowAttribution"    >
+                <option className="form-control" disabled selected >Allow Attribution?</option>
+                <option className="form-control" value="Allow Attribution">Allow Attribution</option>
+                <option className="form-control" value="No Attribution">No Attribution</option>
                </select>
               <label for="allowAttribution">Allow Attribution?</label>
     
             </div>
         </div>
 
-        <div class="col-md-4">
-          <div class="form-floating my-2  ">
+        <div className="col-md-4">
+          <div className="form-floating my-2  ">
                   
-            <select class="form-control form-select" id="commercialUse"    name="commercialUse"       >
-                <option class="form-control" disabled selected  >Commercial Use?</option>
-                <option class="form-control" value="Commercial Use">Commercial Use</option>
-                <option class="form-control" value="Non Commercial">Non Commercial</option>
+            <select className="form-control form-select" id="commercialUse"    name="commercialUse"       >
+                <option className="form-control" disabled selected  >Commercial Use?</option>
+                <option className="form-control" value="Commercial Use">Commercial Use</option>
+                <option className="form-control" value="Non Commercial">Non Commercial</option>
                </select>
               <label for="commercialUse">Commercial Use?</label>
     
             </div>
         </div>
-        <div class="col-md-4">
-          <div class="form-floating my-2  ">
+        <div className="col-md-4">
+          <div className="form-floating my-2  ">
                   
-            <select class="form-control form-select" id="derivativeWorks"    name="derivativeWorks"    >
-                <option class="form-control" disabled selected >Derivative Works?</option>
-                <option class="form-control" value="No Selection">No Selection</option>
-                <option class="form-control" value="Share Alike">Share Alike</option>
-                <option class="form-control" value="No Derivative Works">No Derivative Works</option>
+            <select className="form-control form-select" id="derivativeWorks"    name="derivativeWorks"    >
+                <option className="form-control" disabled selected >Derivative Works?</option>
+                <option className="form-control" value="No Selection">No Selection</option>
+                <option className="form-control" value="Share Alike">Share Alike</option>
+                <option className="form-control" value="No Derivative Works">No Derivative Works</option>
                </select>
               <label for="derivativeWorks">Derivative Works?</label>
     

@@ -32,16 +32,16 @@
     <link rel="stylesheet" href="../assets/styles/style.css" />
   </head>
   <body>
-    <div class="jumbotron jumbotron-fluid">
-      <div class="container">
-        <h1 class="display-4">Welcome</h1>
+    <div className="jumbotron jumbotron-fluid">
+      <div className="container">
+        <h1 className="display-4">Welcome</h1>
       </div>
     </div>
-    <div class="container">
+    <div className="container">
       <button id="connect">Sign in with MetaMask</button>
     </div>
-     <div class="container" id="feed-section">
-         <div class="row">
+     <div className="container" id="feed-section">
+         <div className="row">
 
 
            
@@ -52,15 +52,15 @@
                   <% if(result[i].tracks!=null&&result[i].tracks.length>0){ %><!--  if array with result exists -->
                     <% for(var j=0;j<result[i].tracks.length;j++){%>
                     
-                    <div class="col-md-4">
-                        <div class="card">
-                            <div class="card-header">
+                    <div className="col-md-4">
+                        <div className="card">
+                            <div className="card-header">
                               Featured
                             </div>
-                            <div class="card-body">
-                              <h5 class="card-title"><%= result[i].tracks[j].trackName; %></h5>
-                              <p class="card-text"><%= result[i].tracks[j].genre; %></p>
-                              <a href="#" class="btn btn-primary">Play
+                            <div className="card-body">
+                              <h5 className="card-title"><%= result[i].tracks[j].trackName; %></h5>
+                              <p className="card-text"><%= result[i].tracks[j].genre; %></p>
+                              <a href="#" className="btn btn-primary">Play
                                 <audio controls> 
                                     <source src=" <%= result[i].tracks[j].link; %>" type="audio/mpeg">
                                   Your browser does not support the audio element.

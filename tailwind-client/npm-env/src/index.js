@@ -3,10 +3,12 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import PerfectScrollbar from 'react-perfect-scrollbar'
-import axios from "axios";
+ import axios from "axios";
 import Noty from 'noty';
 import mojs from "@mojs/core";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import  Track from './component/track.component';
+import Navbar from './component/navbar.component';
 
 // Add a request interceptor
 axios.interceptors.request.use(function (config) {
@@ -146,12 +148,15 @@ axios.interceptors.response.use(
 
 
 ReactDOM.render(
+  <Router>
+    <Navbar />
 
   <React.StrictMode>
-     <PerfectScrollbar>
-     <App />
-    </PerfectScrollbar>
-  </React.StrictMode>,
+      
+     <Route path="/upload" exact component={() => <App />} />
+     <Route path="/" exact component={() => <Track />} />
+  
+  </React.StrictMode></Router>,
   document.getElementById('root')
 );
 

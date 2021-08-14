@@ -638,7 +638,7 @@ function ghostFix(ref) {
 function build(ref) {
   findOrCreateContainer(ref);
 
-  var markup = '<div class="noty_body">' + ref.options.text + '</div>' + buildButtons(ref) + '<div class="noty_progressbar"></div>';
+  var markup = '<div className="noty_body">' + ref.options.text + '</div>' + buildButtons(ref) + '<div className="noty_progressbar"></div>';
 
   ref.barDom = document.createElement('div');
   ref.barDom.setAttribute('id', ref.id);

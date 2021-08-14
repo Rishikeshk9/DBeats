@@ -133,8 +133,6 @@ app.post("/upload-video", (req, res) => {
 
   const { videoImage, videoFile } = req.files;
 
-  
-
   const userId = req.body.userId;
   const file = req.files.videoFile;
   const albumFile = req.files.videoImage;
@@ -246,8 +244,6 @@ app.post("/upload", (req, res) => {
   } = req.body;
 
   const { trackImage, trackFile } = req.files;
-
- 
 
   const userId = req.body.userId;
   const file = req.files.trackFile;
@@ -453,8 +449,6 @@ async function saveTrackToDB(
 
   return "done.";
 }
-
-
 
 async function saveVideoToDB(
   userId,

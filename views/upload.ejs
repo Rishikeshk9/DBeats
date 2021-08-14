@@ -43,13 +43,13 @@
     </style>
   </head>
   <body style="background-color: #f3f0f7">
-    <div class="container">
+    <div className="container">
       <a href="/feed">Home</a>
-      <div class="card rounded-10 flat mt-5">
-        <div class="row m-3">
-          <div class="col-md-3">
+      <div className="card rounded-10 flat mt-5">
+        <div className="row m-3">
+          <div className="col-md-3">
             <div
-              class="rounded-10 flat"
+              className="rounded-10 flat"
               id="albumArtBackground"
               style="
                 background: url('<%= trckName.trackImage %>');
@@ -61,43 +61,43 @@
               "
             ></div>
           </div>
-          <div class="col-md-9">
-            <div class="info-section" style="">
+          <div className="col-md-9">
+            <div className="info-section" style="">
               <h2><%= trckName.trackName %></h2>
 
-              <a class="btn btn-primary p-3 my-2 px-4" href="<%= trckName.link %>"
-                ><i class="fas fa-play text-light"></i>&nbsp;&nbsp;PLAY</a
+              <a className="btn btn-primary p-3 my-2 px-4" href="<%= trckName.link %>"
+                ><i className="fas fa-play text-light"></i>&nbsp;&nbsp;PLAY</a
               >
               <br />
-              <a class="btn btn-default my-3 p-2 px-3 " href="<%= trckName.link %>">
-                <i class="fas fa-share"></i> SHARE
+              <a className="btn btn-default my-3 p-2 px-3 " href="<%= trckName.link %>">
+                <i className="fas fa-share"></i> SHARE
               </a>
-              <div class="btn btn-default my-3  p-2 px-3 mx-3" id="donate">
-                <i class="fas fa-donate"></i> DONATE
+              <div className="btn btn-default my-3  p-2 px-3 mx-3" id="donate">
+                <i className="fas fa-donate"></i> DONATE
               </div>
 
-              <div class="btn btn-default my-3  p-2 px-3  ">
-                <i class="fas fa-ellipsis-v"></i>
+              <div className="btn btn-default my-3  p-2 px-3  ">
+                <i className="fas fa-ellipsis-v"></i>
               </div>
             </div>
           </div>
           
         </div>
         <hr style="height:1.5px;border-width:0;background-color:rgb(216, 216, 216); ">
-        <div class="row m-3">
+        <div className="row m-3">
 
-          <div class="col-md-2"   >
-            <p class="info-heads">DURATION<span class="duration" ></span> </p>
-
-          </div>
-
-          <div class="col-md-2">
-            <p class="info-heads">GENRE<span  >00:00</span> </p>
+          <div className="col-md-2"   >
+            <p className="info-heads">DURATION<span className="duration" ></span> </p>
 
           </div>
 
-          <div class="col-md-2">
-            <p class="info-heads">MOOD<span  >00:00</span> </p>
+          <div className="col-md-2">
+            <p className="info-heads">GENRE<span  >00:00</span> </p>
+
+          </div>
+
+          <div className="col-md-2">
+            <p className="info-heads">MOOD<span  >00:00</span> </p>
 
           </div>
 
