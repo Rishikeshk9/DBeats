@@ -337,8 +337,69 @@ app.post("/upload", (req, res) => {
   });
 });
 
-const addFile = async (filePath) => {
-  const file = fs.readFileSync(filePath);
+app.post('/upload-nft', (req, res) => {
+  console.log(req.body);
+  console.log(req.files);
+  console.log(req);
+  const { videoFile } = req.files;
+  const { metadata } = req.body;
+
+  const file = req.files.videoFile;
+  const fileName = videoFile.name + path.extname(videoFile.name); //path.extname(videoFile.name)
+  const filePath = fileName;
+  console.log(metadata,JSON.parse(metadata));
+
+  let videoHashLink = null;
+  // fs.writeFile(`${randNum}`, metadata, (err) => {
+  //   // throws an error, you could also catch it here
+  //   if (err) throw err;
+
+  //   // success case, the file was saved
+  //   console.log('Metadata created!');
+  // });
+  // let metadataHash = await addFile(`${randNum}`);
+  // fs.unlink(`${randNum}`, (err) => {
+  //   if (err) console.log(err);
+  // });
+
+  file.mv(filePath, async (err) => {
+    try {
+      let metadataHash = await addFile('metadata.json', metadata);
+      let metadataHashLink = 'https://ipfs.io/ipfs/' + metadataHash;
+
+
+      const fileHash = await addFile(filePath);
+
+      videoHashLink = 'https://ipfs.io/ipfs/' + fileHash;
+      console.log('video Uploaded Successfully!: ' + fileHash);
+      fs.unlink(filePath, (err) => {
+        if (err) console.log(err);
+      });
+
+      if (err) {
+        console.log('Error : failed to Upload the Video File');
+        return res.status(500).send(err);
+      }
+      return res.status(201).send([videoHashLink, metadataHashLink]);
+    } catch (error) {
+      console.log(error);
+    }
+  });
+});
+
+const addFile = async (filePath, contentString = false) => {
+  if (contentString == false) {
+    const file = fs.readFileSync(filePath);
+    const fileAdded = await ipfs.add({ path: filePath, content: file });
+  } else {
+    const fileAdded = await ipfs.add(
+      { path: 'metadata.json', content: contentString },
+      { wrapWithDirectory: true }
+    );
+  }
+  
+  const file =
+    contentString != false ? contentString : fs.readFileSync(filePath);
   const fileAdded = await ipfs.add({ path: filePath, content: file });
   console.log(fileAdded);
   //const fileHash = fileAdded[0].hash;

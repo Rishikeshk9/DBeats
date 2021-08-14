@@ -21,8 +21,12 @@ import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Noty from "noty";
 import Multiselect from "multiselect-react-dropdown";
+import useWeb3Modal from '../hooks/useWeb3Modal';
+import mintNFT from './Mint';
 
 const Form = (props) => {
+  const [provider, loadWeb3Modal, logoutOfWeb3Modal] = useWeb3Modal();
+
   const [track, setTrack] = useState({
     trackName: "",
     trackImage: "",
@@ -167,6 +171,17 @@ const Form = (props) => {
 
     }
     else if(e.target.value==="Upload Audio"){
+      let formDatanft = new FormData();
+      formDatanft.append('videoFile', track.trackFile);
+
+      if(document.getElementById("is_nft").checked)
+      await mintNFT(
+        provider,
+        formDatanft,
+        track.trackFile,
+        track.trackName,
+        track.description
+      );
       
     const {
       trackName,
@@ -315,6 +330,22 @@ const Form = (props) => {
                         <p className="pl-1"></p>
                       </div>
                       <p className="text-xs text-gray-500">MP3 up to 10MB</p>
+                    </div>
+                  </div>
+                </div>
+                <div className="mt-5 md:mt-0 md:col-span-2 p-5  ">
+                  <label className="block text-sm font-medium text-gray-700"></label>
+                  <div className=" mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
+                    <div className="space-y-1 text-center ">
+                      <div className="flex text-sm text-gray-600">
+                        <input
+                          id="is_nft"
+                          name="isNFT"
+                          type="checkbox"
+                          className="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded"
+                        />
+                        <p className="px-3">Mint NFT</p>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -552,7 +583,7 @@ const Form = (props) => {
                             type="file"
                             name="videoImage"
                             accept=".jpg,.png,.jpeg"
-                            onChange={ onVideoFileChange}
+                            onChange={onVideoFileChange}
                             className="sr-only "
                           />
                         </label>

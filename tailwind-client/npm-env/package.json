@@ -14,6 +14,8 @@
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
+    "@zoralabs/nft-hooks": "^0.4.7-pre2",
+    "@zoralabs/zdk": "^1.2.3",
     "a11y-react-emoji": "^1.1.3",
     "axios": "^0.21.1",
     "express": "^4.17.1",
@@ -23,7 +25,7 @@
     "react-chips": "^0.8.0",
     "react-custom-scrollbars": "^4.2.1",
     "react-dom": "^17.0.2",
-     
+    "react-perfect-scrollbar": "^1.5.8",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.3",
     "web-vitals": "^1.0.1"
