@@ -4,28 +4,21 @@ import { useState } from "react";
 import { Fragment } from "react";
 
 import { Popover, Transition } from "@headlessui/react";
-import {
-  BookmarkAltIcon,
-  CalendarIcon,
-  ChartBarIcon,
-  CursorClickIcon,
-  MenuIcon,
-  PhoneIcon,
-  PlayIcon,
-  RefreshIcon,
-  ShieldCheckIcon,
-  SupportIcon,
-  ViewGridIcon,
+import { 
+  MenuIcon, 
   XIcon,
 } from "@heroicons/react/outline";
-import { ChevronDownIcon } from "@heroicons/react/solid";
-import Logo from "../assets/graphics/DBeatsHori.png";
+ import Logo from "../assets/graphics/DBeatsHori.png";
+ import { useSelector,useDispatch } from "react-redux";
+import {toggleAudius} from "../actions/index";
 
-function classNames(...classes) {
-  return classes.filter(Boolean).join(" ");
-}
+
 
 export default function Navbar() {
+
+  const audius = useSelector((state)=>state.toggleAudius);
+  const dispatch = useDispatch();
+
   return (
     <Popover className="sticky top-0 bg-white shadow z-50 min-w-full">
       {({ open }) => (
@@ -59,7 +52,7 @@ export default function Navbar() {
                     Videos
                   </a>
                   <a
-                    href=" "
+                    href="/music"
                     className="mx-3 text-base font-medium text-gray-500 hover:text-gray-900"
                   >
                     Music
@@ -70,7 +63,9 @@ export default function Navbar() {
                     <div className="relative">
                       <input
                         type="checkbox"
-                        id="toggleB"
+                        id="audius"
+                        checked={audius}
+                        onClick={()=> dispatch(toggleAudius())} 
                         className="sr-only"
                       ></input>
 
@@ -79,15 +74,15 @@ export default function Navbar() {
                       <div className="dot absolute left-1 top-1 bg-white w-6 h-6 rounded-full transition shadow"></div>
                     </div>
 
-                    <div className="ml-3 text-gray-500 font-medium"><img src="https://audius.org/img/audius@2x.png" className="w-10 h-10" alt="audius"></img></div>
+                    <div className="ml-3 text-gray-500 font-medium"><img src="https://audius.org/img/audius@2x.png" className={`${!audius?'filter grayscale-75 ':''}w-10 h-10 filter`}  alt="audius"></img></div>
                   </label>
                 </div>
               </Popover.Group>
               <div className="hidden md:flex items-center justify-end md:flex-1 lg:w-0">
                 <a
-                  href=" "
+                  href="/upload"
                   className="whitespace-nowrap text-base font-medium text-gray-500 hover:text-gray-900"
-                ></a>
+                >Upload</a>
                 <a
                   href=" "
                   onClick=""

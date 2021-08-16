@@ -8,23 +8,44 @@ import logo from "../assets/graphics/DBeatsHori.png";
 import { Menu, Transition } from "@headlessui/react";
 import { Fragment, useEffect, useRef } from "react";
 import Switch from "./switch.component";
+import { useSelector,useDispatch } from "react-redux";
 
-export default class Track extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
+export default function Track(){
+ 
+
+  // constructor(props) {
+  //   super(props);
+    
+  const [state, setState] =  useState({
       error: null,
       isLoaded: false,
       items: [],
       topTrack: null,
       play: false,
-    };
+    });
 
-    this.getTodos = this.getTodos.bind(this);
+  //   getTodos = getTodos.bind(this);
+  // }
+  let audio = new Audio("");
+  
+ 
+
+ 
+   const getTodos = async () => {
+    let data = await axios
+      .get("https://discoveryprovider.audius.co/v1/tracks/trending?app_name=ExampleApp")
+      .then(function (response) {
+        //console.log(response.data.data);
+        return response;
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+      if(data)
+    setState({ todos: data.data.data });
   }
-  audio = new Audio("");
 
-  async getTodos() {
+  const getDbeats = async () => {
     let data = await axios
       .get("https://discoveryprovider.audius.co/v1/tracks/trending?app_name=ExampleApp")
       .then(function (response) {
@@ -35,72 +56,71 @@ export default class Track extends React.Component {
         console.log(error);
       });
       if(data)
-    this.setState({ todos: data.data.data });
+    setState({ todos: data.data.data });
   }
-
-  async getDbeats() {
-    let data = await axios
-      .get("https://discoveryprovider.audius.co/v1/tracks/trending?app_name=ExampleApp")
-      .then(function (response) {
-        console.log(response.data.data);
-        return response;
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-      if(data)
-    this.setState({ todos: data.data.data });
-  }
-
-  componentDidMount() {
+     
+     
+   useEffect(() => {
+    // Anything in here is fired on component mount.
     console.log("GrandChild did mount.");
+    
 
-    this.getTodos();
-    this.audio.addEventListener("ended", () => this.setState({ play: false }));
-  }
+    getTodos();
+    audio.addEventListener("ended", () => setState({ play: false }));
+    return () => {
+        // Anything in here is fired on component unmount.
+        audio.removeEventListener("ended", () =>
+      setState({ play: false }))
+    }
+}, []) 
 
-  componentWillUnmount() {
-    this.audio.removeEventListener("ended", () =>
-      this.setState({ play: false })
-    );
-  }
-
-  playAudio = async (e) => {
+const playAudio = async (e) => {
     console.log(e.target.name);
-
-    if(!this.play)
-    this.audio = new Audio(
+ 
+    if(!state.play)
+    audio = new Audio(
       `https://discoveryprovider.audius.co/v1/tracks/${e.target.name}/stream?app_name=ExampleApp`
     );
 
-    if (this.play) {
-      this.audio.pause();
-      this.play = false;
+    if (state.play) {
+      audio.pause();
+      state.play = false;
     } else {
-      this.audio.play();
-      this.play = true;
+      audio.play();
+      state.play = true;
 
     }
-
-    this.setState({ play: !this.state.play }, () => {
-        this.state.play ? this.audio.play() : this.audio.pause();
-      });
-  
-    console.log(this.play);
+   
+    console.log(state.play);
   };
 
-  render() {
-    const { todos } = this.state;
-
+   
+   
+  const audius = useSelector((state)=>state.toggleAudius);
+    
     return (
+      
       <>
-        {todos &&
-          todos.map((todo) => {
+      <Transition
+           
+           show={audius}
+           enter="transition-opacity duration-500"
+           enterFrom="opacity-0"
+           enterTo="opacity-100"
+           leave="transition-opacity duration-500"
+           leaveFrom="opacity-100"
+           leaveTo="opacity-0"
+         >
+        {audius&&state.todos &&
+          state.todos.map((todo) => {
             return (
+              
               <div
                 className="text-gray-200  mx-auto px-10 py-3 w-2/3 my-0"
                 key={todo.id}
               >
+                         
+
                 {/* header */}
                 <div className="flex ">
                   <div className="bg-white shadow-md flex p-4  mx-auto  rounded-lg min-w-full hover:scale-101 transform transition-all">
@@ -201,11 +221,11 @@ export default class Track extends React.Component {
                       <div className=" flex mt-2   ">
                         <div className="flex ">
                           <button
-                            onClick={this.playAudio}
+                            onClick={playAudio}
                             name={todo.id}
                             className="mr-2 uppercase font-bold  bg-gradient-to-r from-green-400 to-blue-500   text-white block py-2 px-10   hover:scale-95 transform transition-all"
                           >
-                            {this.state.play ? "Pause" : "Play"}
+                            {state.play ? "Pause" : "Play"}
                           </button>
                           <button className="mr-2 border-white     text-gray-600 border block p-2 rounded-full hover:scale-95 transform transition-all">
                             <svg
@@ -250,22 +270,8 @@ export default class Track extends React.Component {
               </div>
             );
           })}
+          </Transition>
       </>
-      //      <div className="h-50 grid grid-cols-4 grid-flow-row gap-4  ">
-      //     <div className="rounded shadow-md p-2  col-span-2 col-start-2 bg-white mt-5">
-      //       <div className="  grid grid-cols-4 grid-flow-row gap-4  ">
-      //         <img
-      //           id="track-image"
-      //           alt="" onClick={this.playAudio}
-      //           className="h-50 w-50    col-span-1 row-span-3"
-      //         ></img>
-      //         <h3 className="text-2xl col-span-1" id="title"></h3>
-      //         <p className="text-md   col-start-2 " id="description"></p>
-      //         <p className="text-md   col-start-2 ">dasdsa</p>
-
-      //       </div>
-      //     </div>
-      //   </div>
+      
     );
-  }
-}
+  } 

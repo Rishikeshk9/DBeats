@@ -102,7 +102,8 @@ export default function Switcher() {
             className="  transition-all transform h-64"
             activeClassName="opacity-100 duration-500 translate-x-0"
             inactiveClassName="absolute opacity-0 -translate-x-2"
-          >            <Form className="" name="nft" />
+          >            
+          <Form className="" name="nft" />
           </Tab.Panel>
         </Tab.Group>
       </div>

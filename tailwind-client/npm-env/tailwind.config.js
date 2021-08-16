@@ -29,6 +29,10 @@ module.exports = {
      '75': 75,
      '100': 100,
       'auto': 'auto',
+    },extend: {
+      grayscale: {50: '50%',
+        75: '75%',
+      }
     }
   },
   variants: {

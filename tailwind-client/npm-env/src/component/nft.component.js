@@ -115,34 +115,40 @@ const Form = (props) => {
       return (
         <audio controls>
           {" "}
-          <source src={uri} type={mimeType}></source>{" "}
-           Your browser does
-          not support the audio tag.
+          <source src={uri} type={mimeType}></source> Your browser does not
+          support the audio tag.
         </audio>
       );
-    }else if (mime.split("/")[0] === "video") {
-        return (
-            <video width="320" height="240" controls>
-            <source src={uri} type={mimeType}></source>
-            
-            Your browser does not support the video tag.
-          </video>
-        );
-      }
+    } else if (mime.split("/")[0] === "video") {
+      return (
+        <video width="320" height="240"  autoPlay muted loop>
+          <source src={uri} type={mimeType}></source>
+          Your browser does not support the video tag.
+        </video>
+      );
+    }
   }
 
   return (
-    <>
+    <><div className="flex ">
+      <div className="flex m-5 grid grid-cols-4 w-2/3 mx-auto"> 
       {nft.nfts &&
         nft.nfts.map((nft) => {
           return (
-            <div className="bg-white shadow" key={nft.title}>
-              {getMediaType(nft.contentURI, nft.mimeType)}
-              <h2 className="text-black font-bold text-xl">{nft.title}</h2>
-              <p className="text-black font-bold ">{nft.description}</p>
-            </div>
+            <>
+              
+              
+                <div className="bg-white shadow max-w-50 h-70 m-5 p-3 rounded-md shadow-md col-span-1 hover:scale-101 transform transition-all" key={nft.title}>
+                  {getMediaType(nft.contentURI, nft.mimeType)}
+                  <h2 className="text-black font-bold text-xl truncate">{nft.title}</h2>
+                  <p className="text-black font-bold ">{nft.description}</p>
+                </div>
+                
+            </>
           );
         })}
+        </div>
+        </div>
     </>
   );
 };

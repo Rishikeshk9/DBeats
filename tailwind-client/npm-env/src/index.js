@@ -10,7 +10,12 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Track from "./component/track.component";
 import Navbar from "./component/navbar.component";
 import NFTFeed from "./component/nft.component";
- 
+import store from "./store";
+import { Provider } from "react-redux";
+import { CSSTransition, TransitionGroup } from "react-transition-group";
+
+store.subscribe(() => console.log(store.getState()));
+
 // Add a request interceptor
 axios.interceptors.request.use(
   function (config) {
@@ -18,7 +23,7 @@ axios.interceptors.request.use(
     // Do something before request is sent
     new Noty({
       type: "info",
-      text: "Uploading Track",
+      text: "Please Wait",
       theme: "metroui",
       layout: "bottomRight",
     }).show();
@@ -148,16 +153,19 @@ axios.interceptors.response.use(
 );
 
 ReactDOM.render(
-  <Router>
-    <Navbar />
+  // Redux Store Provider
+  <Provider store={store}>
+    <Router>
+      <Navbar />
+ 
+          <Route path="/nft" exact component={() => <NFTFeed />} />
 
-    <React.StrictMode>
-    <Route path="/nft" exact component={() => <NFTFeed />} />
-
-      <Route path="/upload" exact component={() => <App />} />
-      <Route path="/" exact component={() => <Track />} />
-    </React.StrictMode>
-  </Router>,
+          <Route path="/upload" exact component={() => <App />} />
+          <Route path="/music" exact component={() => <Track />} />
+         
+      
+    </Router>
+  </Provider>,
   document.getElementById("root")
 );
 

@@ -11,6 +11,7 @@ const port = process.env.PORT || 5000;
 const path = require("path");
 const cors = require("cors");
 const mongoose = require("mongoose");
+const { MongoClient } = require("mongodb");
 
 require("dotenv").config();
 
@@ -28,7 +29,6 @@ app.use(express.static("public"));
 
 //Database Linking
 
-const { MongoClient } = require("mongodb");
 // or as an es module:
 // import { MongoClient } from 'mongodb'
 
@@ -41,6 +41,7 @@ mongoose.connect(uri, {
   useUnifiedTopology: true,
   useCreateIndex: true,
 });
+
 const connection = mongoose.connection;
 connection.once("open", () => {
   console.log("MongoDB database connection established successfully");

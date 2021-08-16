@@ -23,6 +23,7 @@ import Noty from "noty";
 import Multiselect from "multiselect-react-dropdown";
 import useWeb3Modal from '../hooks/useWeb3Modal';
 import mintNFT from './Mint';
+import Webupload from './uploadWeb3.component'
 
 const Form = (props) => {
   const [provider, loadWeb3Modal, logoutOfWeb3Modal] = useWeb3Modal();
@@ -807,7 +808,8 @@ const Form = (props) => {
     return (
       <div className="mx-auto xl:w-8/12 lg:w-8/12 md:w-11/12  sm:w-full ">
         <div className=" bg-white  shadow-md rounded-lg  px-5 py-5 my-5 text-center">
-          <h1 className=" text-lg font-bold text-info ">COMING SOON!</h1>
+         
+          <h1 className=" text-lg font-bold text-info "><Webupload/></h1>
         </div>
       </div>
     );
